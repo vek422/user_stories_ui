@@ -1,0 +1,15 @@
+/home/rose/code/bank_user_stories_ui/c#/bin/Debug/net10.0/c#
+/home/rose/code/bank_user_stories_ui/c#/bin/Debug/net10.0/c#.deps.json
+/home/rose/code/bank_user_stories_ui/c#/bin/Debug/net10.0/c#.runtimeconfig.json
+/home/rose/code/bank_user_stories_ui/c#/bin/Debug/net10.0/c#.dll
+/home/rose/code/bank_user_stories_ui/c#/bin/Debug/net10.0/c#.pdb
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.GeneratedMSBuildEditorConfig.editorconfig
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.AssemblyInfoInputs.cache
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.AssemblyInfo.cs
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.csproj.CoreCompileInputs.cache
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.sourcelink.json
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.dll
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/refint/c#.dll
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.pdb
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/c#.genruntimeconfig.cache
+/home/rose/code/bank_user_stories_ui/c#/obj/Debug/net10.0/ref/c#.dll
