@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Bank - Profile</title>
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/profile.css" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="../index.html" class="navbar-brand">
+        <span class="highlight">Secure </span>Bank
+      </a>
+      <div class="navbar-menu">
+        <a href="home.html" class="nav-link">Home</a>
+        <a href="deposit.html" class="nav-link">Deposit</a>
+        <a href="withdrawal.html" class="nav-link">Withdrawal</a>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="profile-container">
+      <div class="profile-header">
+        <h1 class="profile-title">Edit Profile</h1>
+        <p class="profile-subtitle">Update your personal information</p>
+      </div>
+
+      <form id="profileForm" class="profile-form" novalidate>
+        <!-- Account Number (Read-only) -->
+        <div class="form-group">
+          <label class="form-label">Account Number</label>
+          <input
+            type="text"
+            id="accountNumber"
+            class="form-input readonly"
+            readonly
+          />
+        </div>
+
+        <!-- Row 1: First Name & Last Name -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              class="form-input"
+              maxlength="50"
+            />
+            <span class="error-message" id="firstNameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="form-input"
+              maxlength="50"
+            />
+            <span class="error-message" id="lastNameError"></span>
+          </div>
+        </div>
+
+        <!-- Aadhar ID -->
+        <div class="form-group">
+          <label for="aadharId" class="form-label">Aadhar ID</label>
+          <input
+            type="text"
+            id="aadharId"
+            name="aadharId"
+            class="form-input"
+            maxlength="12"
+          />
+          <span class="error-message" id="aadharIdError"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" />
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+          <label for="address" class="form-label">Address</label>
+          <textarea
+            id="address"
+            name="address"
+            class="form-input form-textarea"
+            maxlength="100"
+            rows="3"
+          ></textarea>
+          <span class="error-message" id="addressError"></span>
+        </div>
+
+        <!-- Contact Number -->
+        <div class="form-group">
+          <label for="contactNumber" class="form-label">Contact Number</label>
+          <input
+            type="tel"
+            id="contactNumber"
+            name="contactNumber"
+            class="form-input"
+            maxlength="10"
+          />
+          <span class="error-message" id="contactNumberError"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-update" id="submitBtn">
+          Update Profile
+        </button>
+      </form>
+    </main>
+
+    <!-- Success Popup -->
+    <div class="popup-overlay hidden" id="successPopup">
+      <div class="popup-card">
+        <div class="popup-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <p class="popup-message">Customer Update Successful.</p>
+        <button class="btn-popup-close" id="closePopup">OK</button>
+      </div>
+    </div>
+
+    <script src="../js/db.js"></script>
+    <script src="../js/profileValidation.js"></script>
+  </body>
+</html>

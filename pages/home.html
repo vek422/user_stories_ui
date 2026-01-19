@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Bank - Home</title>
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/home.css" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="../index.html" class="navbar-brand">
+        <span class="highlight">Secure </span>Bank
+      </a>
+      <div class="navbar-menu">
+        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="deposit.html" class="nav-link">Deposit</a>
+        <a href="withdrawal.html" class="nav-link">Withdrawal</a>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="home-container">
+      <!-- Welcome Section -->
+      <section class="welcome-section">
+        <h1 class="welcome-title">
+          Welcome, <span id="customerName">Customer</span>
+        </h1>
+        <p class="welcome-subtitle">Manage your account with ease</p>
+      </section>
+
+      <!-- Account Card -->
+      <section class="account-card">
+        <div class="account-header">
+          <span class="account-label">Account Number</span>
+          <span class="account-number" id="accountNumber">0000000000</span>
+        </div>
+        <div class="balance-section">
+          <span class="balance-label">Current Balance</span>
+          <span class="balance-amount">₹<span id="balance">0</span></span>
+        </div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="quick-actions">
+        <h2 class="section-title">Quick Actions</h2>
+        <div class="actions-grid">
+          <a href="deposit.html" class="action-card">
+            <div class="action-icon deposit-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </div>
+            <span class="action-title">Deposit</span>
+            <span class="action-desc">Add funds to your account</span>
+          </a>
+          <a href="withdrawal.html" class="action-card">
+            <div class="action-icon withdrawal-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+              </svg>
+            </div>
+            <span class="action-title">Withdrawal</span>
+            <span class="action-desc">Withdraw from your account</span>
+          </a>
+          <a href="profile.html" class="action-card">
+            <div class="action-icon profile-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <span class="action-title">Profile</span>
+            <span class="action-desc">Update your information</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/db.js"></script>
+    <script src="../js/home.js"></script>
+  </body>
+</html>

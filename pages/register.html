@@ -36,21 +36,53 @@
       </div>
 
       <form id="registerForm" class="register-form" novalidate>
-        <!-- Row 1: Full Name & Email -->
+        <!-- Aadhar ID -->
+        <div class="form-group">
+          <label for="aadharId" class="form-label">Aadhar ID</label>
+          <input
+            type="text"
+            id="aadharId"
+            name="aadharId"
+            class="form-input"
+            placeholder="Enter 12-digit Aadhar ID"
+            maxlength="12"
+          />
+          <span class="error-message" id="aadharIdError"></span>
+        </div>
+
+        <!-- Row 1: First Name & Last Name -->
         <div class="form-row">
           <div class="form-group">
-            <label for="fullName" class="form-label">Full Name</label>
+            <label for="firstName" class="form-label">First Name</label>
             <input
               type="text"
-              id="fullName"
-              name="fullName"
+              id="firstName"
+              name="firstName"
               class="form-input"
-              placeholder="John Doe"
-              autocomplete="name"
+              placeholder="John"
+              maxlength="50"
+              autocomplete="given-name"
             />
-            <span class="error-message" id="fullNameError"></span>
+            <span class="error-message" id="firstNameError"></span>
           </div>
 
+          <div class="form-group">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="form-input"
+              placeholder="Doe"
+              maxlength="50"
+              autocomplete="family-name"
+            />
+            <span class="error-message" id="lastNameError"></span>
+          </div>
+        </div>
+
+        <!-- Row 2: Email & Contact Number -->
+        <div class="form-row">
           <div class="form-group">
             <label for="email" class="form-label">Email Address</label>
             <input
@@ -63,34 +95,35 @@
             />
             <span class="error-message" id="emailError"></span>
           </div>
-        </div>
 
-        <!-- Row 2: Phone & Date of Birth -->
-        <div class="form-row">
           <div class="form-group">
-            <label for="phone" class="form-label">Phone Number</label>
+            <label for="contactNumber" class="form-label">Contact Number</label>
             <input
               type="tel"
-              id="phone"
-              name="phone"
+              id="contactNumber"
+              name="contactNumber"
               class="form-input"
-              placeholder="+1 (555) 123-4567"
+              placeholder="Enter 10-digit number"
+              maxlength="10"
               autocomplete="tel"
             />
-            <span class="error-message" id="phoneError"></span>
+            <span class="error-message" id="contactNumberError"></span>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label for="dob" class="form-label">Date of Birth</label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              class="form-input"
-              autocomplete="bday"
-            />
-            <span class="error-message" id="dobError"></span>
-          </div>
+        <!-- Address -->
+        <div class="form-group">
+          <label for="address" class="form-label">Address</label>
+          <textarea
+            id="address"
+            name="address"
+            class="form-input form-textarea"
+            placeholder="Enter street, city details"
+            maxlength="100"
+            rows="3"
+            autocomplete="street-address"
+          ></textarea>
+          <span class="error-message" id="addressError"></span>
         </div>
 
         <!-- Row 3: Password & Confirm Password -->
@@ -103,7 +136,8 @@
                 id="password"
                 name="password"
                 class="form-input"
-                placeholder="Create a strong password"
+                placeholder="Create a password"
+                maxlength="30"
                 autocomplete="new-password"
               />
               <button
@@ -142,10 +176,6 @@
                 </svg>
               </button>
             </div>
-            <div class="password-strength">
-              <div class="strength-bar" id="strengthBar"></div>
-            </div>
-            <span class="strength-text" id="strengthText"></span>
             <span class="error-message" id="passwordError"></span>
           </div>
 
@@ -160,6 +190,7 @@
                 name="confirmPassword"
                 class="form-input"
                 placeholder="Re-enter your password"
+                maxlength="30"
                 autocomplete="new-password"
               />
               <button
@@ -202,22 +233,9 @@
           </div>
         </div>
 
-        <!-- Terms & Conditions -->
-        <div class="form-group checkbox-group">
-          <label class="checkbox-label">
-            <input type="checkbox" id="terms" name="terms" />
-            <span class="checkbox-custom"></span>
-            <span class="checkbox-text"
-              >I agree to the <a href="#" class="link">Terms of Service</a> and
-              <a href="#" class="link">Privacy Policy</a></span
-            >
-          </label>
-          <span class="error-message" id="termsError"></span>
-        </div>
-
         <!-- Submit Button -->
         <button type="submit" class="btn-register" id="submitBtn">
-          <span class="btn-text">Create Account</span>
+          <span class="btn-text">Register</span>
           <span class="btn-loader hidden">
             <svg
               class="spinner"
@@ -235,25 +253,53 @@
           </span>
         </button>
 
-        <!-- Success Message -->
-        <div class="success-message hidden" id="successMessage">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          <span>Account created successfully!</span>
+        <!-- Success Card -->
+        <div class="success-card hidden" id="successCard">
+          <div class="success-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h2 class="success-title">Customer Registration successful.</h2>
+          <div class="customer-details">
+            <div class="detail-row">
+              <span class="detail-label">Customer Account ID</span>
+              <span class="detail-value" id="accountNumber">0000000000</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Customer Name</span>
+              <span class="detail-value" id="customerName">John Doe</span>
+            </div>
+          </div>
+          <button type="button" class="btn-login-redirect" id="goToLoginBtn">
+            Go to Login
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
         </div>
       </form>
     </main>
 
+    <script src="../js/db.js"></script>
     <script src="../js/registerValidation.js"></script>
   </body>
 </html>

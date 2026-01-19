@@ -6,23 +6,25 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Form elements
   const form = document.getElementById("registerForm");
-  const fullNameInput = document.getElementById("fullName");
+  const aadharIdInput = document.getElementById("aadharId");
+  const firstNameInput = document.getElementById("firstName");
+  const lastNameInput = document.getElementById("lastName");
   const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("phone");
-  const dobInput = document.getElementById("dob");
+  const contactNumberInput = document.getElementById("contactNumber");
+  const addressInput = document.getElementById("address");
   const passwordInput = document.getElementById("password");
   const confirmPasswordInput = document.getElementById("confirmPassword");
-  const termsCheckbox = document.getElementById("terms");
   const submitBtn = document.getElementById("submitBtn");
 
   // Error message elements
-  const fullNameError = document.getElementById("fullNameError");
+  const aadharIdError = document.getElementById("aadharIdError");
+  const firstNameError = document.getElementById("firstNameError");
+  const lastNameError = document.getElementById("lastNameError");
   const emailError = document.getElementById("emailError");
-  const phoneError = document.getElementById("phoneError");
-  const dobError = document.getElementById("dobError");
+  const contactNumberError = document.getElementById("contactNumberError");
+  const addressError = document.getElementById("addressError");
   const passwordError = document.getElementById("passwordError");
   const confirmPasswordError = document.getElementById("confirmPasswordError");
-  const termsError = document.getElementById("termsError");
 
   // Password toggle buttons
   const togglePassword = document.getElementById("togglePassword");
@@ -30,50 +32,47 @@ document.addEventListener("DOMContentLoaded", () => {
     "toggleConfirmPassword"
   );
 
-  // Password strength elements
-  const strengthBar = document.getElementById("strengthBar");
-  const strengthText = document.getElementById("strengthText");
-
-  // Success message
-  const successMessage = document.getElementById("successMessage");
-
   // Validation patterns
   const patterns = {
-    fullName: /^[a-zA-Z\s]{2,50}$/,
+    aadharId: /^\d{12}$/,
+    name: /^[a-zA-Z\s]{1,50}$/,
     email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-    phone: /^[\+]?[(]?[0-9]{1,3}[)]?[-\s\.]?[0-9]{1,4}[-\s\.]?[0-9]{4,6}$/,
+    contactNumber: /^\d{10}$/,
   };
 
   // Error messages
   const errorMessages = {
-    fullName: {
-      empty: "Full name is required",
-      invalid: "Please enter a valid name (letters only, 2-50 characters)",
+    aadharId: {
+      empty: "Aadhar ID is required",
+      invalid: "Please enter a valid 12-digit Aadhar ID",
+    },
+    firstName: {
+      empty: "First name is required",
+      invalid: "Please enter a valid name (letters only, max 50 characters)",
+    },
+    lastName: {
+      empty: "Last name is required",
+      invalid: "Please enter a valid name (letters only, max 50 characters)",
     },
     email: {
       empty: "Email address is required",
       invalid: "Please enter a valid email address",
     },
-    phone: {
-      empty: "Phone number is required",
-      invalid: "Please enter a valid phone number",
+    contactNumber: {
+      empty: "Contact number is required",
+      invalid: "Please enter a valid 10-digit contact number",
     },
-    dob: {
-      empty: "Date of birth is required",
-      underage: "You must be at least 18 years old to register",
-      future: "Date of birth cannot be in the future",
+    address: {
+      empty: "Address is required",
+      invalid: "Address must be maximum 100 characters",
     },
     password: {
       empty: "Password is required",
-      short: "Password must be at least 8 characters long",
-      weak: "Password must include uppercase, lowercase, number, and special character",
+      invalid: "Password must be maximum 30 characters",
     },
     confirmPassword: {
       empty: "Please confirm your password",
       mismatch: "Passwords do not match",
-    },
-    terms: {
-      unchecked: "You must agree to the Terms of Service and Privacy Policy",
     },
   };
 
@@ -98,28 +97,57 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * Clear field state
+   * Validate Aadhar ID
    */
-  function clearState(input, errorElement) {
-    input.classList.remove("error", "success");
-    errorElement.textContent = "";
-    errorElement.classList.remove("visible");
+  function validateAadharId() {
+    const value = aadharIdInput.value.trim();
+    if (!value) {
+      showError(aadharIdInput, aadharIdError, errorMessages.aadharId.empty);
+      return false;
+    }
+    if (!patterns.aadharId.test(value)) {
+      showError(aadharIdInput, aadharIdError, errorMessages.aadharId.invalid);
+      return false;
+    }
+    showSuccess(aadharIdInput, aadharIdError);
+    return true;
   }
 
   /**
-   * Validate full name
+   * Validate First Name
    */
-  function validateFullName() {
-    const value = fullNameInput.value.trim();
+  function validateFirstName() {
+    const value = firstNameInput.value.trim();
     if (!value) {
-      showError(fullNameInput, fullNameError, errorMessages.fullName.empty);
+      showError(firstNameInput, firstNameError, errorMessages.firstName.empty);
       return false;
     }
-    if (!patterns.fullName.test(value)) {
-      showError(fullNameInput, fullNameError, errorMessages.fullName.invalid);
+    if (!patterns.name.test(value)) {
+      showError(
+        firstNameInput,
+        firstNameError,
+        errorMessages.firstName.invalid
+      );
       return false;
     }
-    showSuccess(fullNameInput, fullNameError);
+    showSuccess(firstNameInput, firstNameError);
+    return true;
+  }
+
+  /**
+   * Validate Last Name
+   */
+  function validateLastName() {
+    const value = lastNameInput.value.trim();
+    if (!value) {
+      showError(lastNameInput, lastNameError, errorMessages.lastName.empty);
+      return false;
+    }
+    if (!patterns.name.test(value)) {
+      showError(lastNameInput, lastNameError, errorMessages.lastName.invalid);
+      return false;
+    }
+    showSuccess(lastNameInput, lastNameError);
     return true;
   }
 
@@ -141,105 +169,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * Validate phone number
+   * Validate contact number
    */
-  function validatePhone() {
-    const value = phoneInput.value.trim();
+  function validateContactNumber() {
+    const value = contactNumberInput.value.trim();
     if (!value) {
-      showError(phoneInput, phoneError, errorMessages.phone.empty);
+      showError(
+        contactNumberInput,
+        contactNumberError,
+        errorMessages.contactNumber.empty
+      );
       return false;
     }
-    if (!patterns.phone.test(value)) {
-      showError(phoneInput, phoneError, errorMessages.phone.invalid);
+    if (!patterns.contactNumber.test(value)) {
+      showError(
+        contactNumberInput,
+        contactNumberError,
+        errorMessages.contactNumber.invalid
+      );
       return false;
     }
-    showSuccess(phoneInput, phoneError);
+    showSuccess(contactNumberInput, contactNumberError);
     return true;
   }
 
   /**
-   * Validate date of birth
+   * Validate address
    */
-  function validateDob() {
-    const value = dobInput.value;
+  function validateAddress() {
+    const value = addressInput.value.trim();
     if (!value) {
-      showError(dobInput, dobError, errorMessages.dob.empty);
+      showError(addressInput, addressError, errorMessages.address.empty);
       return false;
     }
-
-    const dob = new Date(value);
-    const today = new Date();
-
-    // Check if date is in the future
-    if (dob > today) {
-      showError(dobInput, dobError, errorMessages.dob.future);
+    if (value.length > 100) {
+      showError(addressInput, addressError, errorMessages.address.invalid);
       return false;
     }
-
-    // Check if user is at least 18
-    const age = today.getFullYear() - dob.getFullYear();
-    const monthDiff = today.getMonth() - dob.getMonth();
-    const dayDiff = today.getDate() - dob.getDate();
-
-    const isUnderage =
-      age < 18 ||
-      (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)));
-
-    if (isUnderage) {
-      showError(dobInput, dobError, errorMessages.dob.underage);
-      return false;
-    }
-
-    showSuccess(dobInput, dobError);
+    showSuccess(addressInput, addressError);
     return true;
-  }
-
-  /**
-   * Calculate password strength
-   */
-  function calculatePasswordStrength(password) {
-    let score = 0;
-
-    if (password.length >= 8) score++;
-    if (password.length >= 12) score++;
-    if (/[a-z]/.test(password)) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[^a-zA-Z0-9]/.test(password)) score++;
-
-    if (score <= 2) return "weak";
-    if (score <= 3) return "fair";
-    if (score <= 5) return "good";
-    return "strong";
-  }
-
-  /**
-   * Update password strength indicator
-   */
-  function updatePasswordStrength(password) {
-    const strength = calculatePasswordStrength(password);
-
-    // Remove all strength classes
-    strengthBar.classList.remove("weak", "fair", "good", "strong");
-    strengthText.classList.remove("weak", "fair", "good", "strong");
-
-    if (password.length === 0) {
-      strengthBar.style.width = "0%";
-      strengthText.textContent = "";
-      return;
-    }
-
-    strengthBar.classList.add(strength);
-    strengthText.classList.add(strength);
-
-    const strengthLabels = {
-      weak: "Weak password",
-      fair: "Fair password",
-      good: "Good password",
-      strong: "Strong password",
-    };
-
-    strengthText.textContent = strengthLabels[strength];
   }
 
   /**
@@ -247,28 +215,14 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function validatePassword() {
     const value = passwordInput.value;
-
     if (!value) {
       showError(passwordInput, passwordError, errorMessages.password.empty);
       return false;
     }
-
-    if (value.length < 8) {
-      showError(passwordInput, passwordError, errorMessages.password.short);
+    if (value.length > 30) {
+      showError(passwordInput, passwordError, errorMessages.password.invalid);
       return false;
     }
-
-    // Check for password complexity
-    const hasLowercase = /[a-z]/.test(value);
-    const hasUppercase = /[A-Z]/.test(value);
-    const hasNumber = /[0-9]/.test(value);
-    const hasSpecial = /[^a-zA-Z0-9]/.test(value);
-
-    if (!hasLowercase || !hasUppercase || !hasNumber || !hasSpecial) {
-      showError(passwordInput, passwordError, errorMessages.password.weak);
-      return false;
-    }
-
     showSuccess(passwordInput, passwordError);
     return true;
   }
@@ -303,27 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * Validate terms checkbox
-   */
-  function validateTerms() {
-    const checkboxCustom = termsCheckbox
-      .closest(".checkbox-label")
-      .querySelector(".checkbox-custom");
-
-    if (!termsCheckbox.checked) {
-      checkboxCustom.classList.add("error");
-      termsError.textContent = errorMessages.terms.unchecked;
-      termsError.classList.add("visible");
-      return false;
-    }
-
-    checkboxCustom.classList.remove("error");
-    termsError.textContent = "";
-    termsError.classList.remove("visible");
-    return true;
-  }
-
-  /**
    * Toggle password visibility
    */
   function togglePasswordVisibility(inputElement, toggleButton) {
@@ -345,34 +278,35 @@ document.addEventListener("DOMContentLoaded", () => {
    * Validate entire form
    */
   function validateForm() {
-    const isFullNameValid = validateFullName();
+    const isAadharValid = validateAadharId();
+    const isFirstNameValid = validateFirstName();
+    const isLastNameValid = validateLastName();
     const isEmailValid = validateEmail();
-    const isPhoneValid = validatePhone();
-    const isDobValid = validateDob();
+    const isContactValid = validateContactNumber();
+    const isAddressValid = validateAddress();
     const isPasswordValid = validatePassword();
     const isConfirmPasswordValid = validateConfirmPassword();
-    const isTermsValid = validateTerms();
 
     return (
-      isFullNameValid &&
+      isAadharValid &&
+      isFirstNameValid &&
+      isLastNameValid &&
       isEmailValid &&
-      isPhoneValid &&
-      isDobValid &&
+      isContactValid &&
+      isAddressValid &&
       isPasswordValid &&
-      isConfirmPasswordValid &&
-      isTermsValid
+      isConfirmPasswordValid
     );
   }
 
   /**
    * Handle form submission
    */
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     // Validate form
     if (!validateForm()) {
-      // Focus on the first error field
       const firstError = form.querySelector(".error");
       if (firstError) {
         firstError.focus();
@@ -387,35 +321,73 @@ document.addEventListener("DOMContentLoaded", () => {
     btnText.classList.add("hidden");
     btnLoader.classList.remove("hidden");
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Collect form data
+    const userData = {
+      aadharId: aadharIdInput.value.trim(),
+      firstName: firstNameInput.value.trim(),
+      lastName: lastNameInput.value.trim(),
+      email: emailInput.value.trim(),
+      contactNumber: contactNumberInput.value.trim(),
+      address: addressInput.value.trim(),
+      password: passwordInput.value,
+    };
+
+    // Create user using db.js
+    const result = window.DB.createUser(userData);
 
     // Hide loading state
     submitBtn.disabled = false;
     btnText.classList.remove("hidden");
     btnLoader.classList.add("hidden");
 
-    // Show success message
-    successMessage.classList.remove("hidden");
-    form.querySelectorAll(".form-group").forEach((group) => {
-      group.style.opacity = "0.5";
-      group.style.pointerEvents = "none";
+    if (!result.success) {
+      showError(emailInput, emailError, result.error);
+      emailInput.focus();
+      return;
+    }
+
+    // Success - show the success card
+    const successCard = document.getElementById("successCard");
+    const accountNumberDisplay = document.getElementById("accountNumber");
+    const customerNameDisplay = document.getElementById("customerName");
+    const goToLoginBtn = document.getElementById("goToLoginBtn");
+
+    // Display customer details
+    accountNumberDisplay.textContent = result.user.accountNumber;
+    customerNameDisplay.textContent = `${result.user.firstName} ${result.user.lastName}`;
+
+    // Hide form elements and show success card
+    form.querySelectorAll(".form-group, .form-row").forEach((group) => {
+      group.style.display = "none";
     });
     submitBtn.style.display = "none";
+    successCard.classList.remove("hidden");
 
-    // Redirect after delay (simulated)
-    setTimeout(() => {
-      // In a real app, redirect to login or dashboard
-      // window.location.href = 'login.html';
-      console.log("Registration successful! Would redirect to login page.");
-    }, 2000);
+    // Handle login redirect button
+    goToLoginBtn.addEventListener("click", () => {
+      window.location.href = "login.html";
+    });
   }
 
   // Event listeners for real-time validation
-  fullNameInput.addEventListener("blur", validateFullName);
-  fullNameInput.addEventListener("input", () => {
-    if (fullNameInput.classList.contains("error")) {
-      validateFullName();
+  aadharIdInput.addEventListener("blur", validateAadharId);
+  aadharIdInput.addEventListener("input", () => {
+    if (aadharIdInput.classList.contains("error")) {
+      validateAadharId();
+    }
+  });
+
+  firstNameInput.addEventListener("blur", validateFirstName);
+  firstNameInput.addEventListener("input", () => {
+    if (firstNameInput.classList.contains("error")) {
+      validateFirstName();
+    }
+  });
+
+  lastNameInput.addEventListener("blur", validateLastName);
+  lastNameInput.addEventListener("input", () => {
+    if (lastNameInput.classList.contains("error")) {
+      validateLastName();
     }
   });
 
@@ -426,23 +398,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  phoneInput.addEventListener("blur", validatePhone);
-  phoneInput.addEventListener("input", () => {
-    if (phoneInput.classList.contains("error")) {
-      validatePhone();
+  contactNumberInput.addEventListener("blur", validateContactNumber);
+  contactNumberInput.addEventListener("input", () => {
+    if (contactNumberInput.classList.contains("error")) {
+      validateContactNumber();
     }
   });
 
-  dobInput.addEventListener("blur", validateDob);
-  dobInput.addEventListener("change", validateDob);
+  addressInput.addEventListener("blur", validateAddress);
+  addressInput.addEventListener("input", () => {
+    if (addressInput.classList.contains("error")) {
+      validateAddress();
+    }
+  });
 
   passwordInput.addEventListener("blur", validatePassword);
   passwordInput.addEventListener("input", () => {
-    updatePasswordStrength(passwordInput.value);
     if (passwordInput.classList.contains("error")) {
       validatePassword();
     }
-    // Re-validate confirm password if it has been touched
     if (
       confirmPasswordInput.value &&
       confirmPasswordInput.classList.contains("error")
@@ -457,8 +431,6 @@ document.addEventListener("DOMContentLoaded", () => {
       validateConfirmPassword();
     }
   });
-
-  termsCheckbox.addEventListener("change", validateTerms);
 
   // Password toggle listeners
   togglePassword.addEventListener("click", () => {
