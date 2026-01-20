@@ -1,8 +1,13 @@
-﻿public class Program
+﻿using c_;
+
+public class Program
 {
     
     public static void Main()
     {
-        Console.WriteLine("WHO AM I");
+        var users = new Dictionary<int, Customer>();
+        Admin admin = new Admin(users);
+
+        admin.Controller();
     }
 }
