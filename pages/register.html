@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Secure Bank - Register</title>
 
-    <!-- Google Fonts - Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,20 +12,17 @@
       rel="stylesheet"
     />
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/register.css" />
   </head>
 
   <body>
-    <!-- Navigation -->
     <nav class="navbar">
       <a href="../index.html" class="navbar-brand">
         <span class="highlight">Secure </span>Bank
       </a>
     </nav>
 
-    <!-- Registration Form -->
     <main class="register-container">
       <div class="register-header">
         <h1 class="register-title">Create Account</h1>
@@ -36,7 +32,6 @@
       </div>
 
       <form id="registerForm" class="register-form" novalidate>
-        <!-- Aadhar ID -->
         <div class="form-group">
           <label for="aadharId" class="form-label">Aadhar ID</label>
           <input
@@ -50,7 +45,6 @@
           <span class="error-message" id="aadharIdError"></span>
         </div>
 
-        <!-- Row 1: First Name & Last Name -->
         <div class="form-row">
           <div class="form-group">
             <label for="firstName" class="form-label">First Name</label>
@@ -81,7 +75,6 @@
           </div>
         </div>
 
-        <!-- Row 2: Email & Contact Number -->
         <div class="form-row">
           <div class="form-group">
             <label for="email" class="form-label">Email Address</label>
@@ -111,7 +104,6 @@
           </div>
         </div>
 
-        <!-- Address -->
         <div class="form-group">
           <label for="address" class="form-label">Address</label>
           <textarea
@@ -126,7 +118,6 @@
           <span class="error-message" id="addressError"></span>
         </div>
 
-        <!-- Row 3: Password & Confirm Password -->
         <div class="form-row">
           <div class="form-group">
             <label for="password" class="form-label">Password</label>
@@ -233,7 +224,6 @@
           </div>
         </div>
 
-        <!-- Submit Button -->
         <button type="submit" class="btn-register" id="submitBtn">
           <span class="btn-text">Register</span>
           <span class="btn-loader hidden">
@@ -253,7 +243,6 @@
           </span>
         </button>
 
-        <!-- Success Card -->
         <div class="success-card hidden" id="successCard">
           <div class="success-icon">
             <svg

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Secure Bank - Login</title>
 
-    <!-- Google Fonts - Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,20 +12,17 @@
       rel="stylesheet"
     />
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/login.css" />
   </head>
 
   <body>
-    <!-- Navigation -->
     <nav class="navbar">
       <a href="../index.html" class="navbar-brand">
         <span class="highlight">Secure </span>Bank
       </a>
     </nav>
 
-    <!-- Login Form -->
     <main class="login-container">
       <div class="login-header">
         <h1 class="login-title">Welcome Back</h1>
@@ -37,7 +33,6 @@
       </div>
 
       <form id="loginForm" class="login-form" novalidate>
-        <!-- Account Number -->
         <div class="form-group">
           <label for="accountNumber" class="form-label">Account Number</label>
           <input
@@ -51,7 +46,6 @@
           <span class="error-message" id="accountNumberError"></span>
         </div>
 
-        <!-- Password -->
         <div class="form-group">
           <label for="password" class="form-label">Password</label>
           <div class="password-wrapper">
@@ -103,7 +97,6 @@
           <span class="error-message" id="passwordError"></span>
         </div>
 
-        <!-- Submit Button -->
         <button type="submit" class="btn-login" id="submitBtn">
           <span class="btn-text">Login</span>
           <span class="btn-loader hidden">
@@ -125,7 +118,6 @@
       </form>
     </main>
 
-    <!-- Success Popup -->
     <div class="popup-overlay hidden" id="successPopup">
       <div class="popup-card">
         <div class="popup-icon">

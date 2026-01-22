@@ -1,10 +1,4 @@
-/**
- * Registration Form Validation
- * Handles client-side validation for the registration form
- */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Form elements
   const form = document.getElementById("registerForm");
   const aadharIdInput = document.getElementById("aadharId");
   const firstNameInput = document.getElementById("firstName");
@@ -16,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmPasswordInput = document.getElementById("confirmPassword");
   const submitBtn = document.getElementById("submitBtn");
 
-  // Error message elements
   const aadharIdError = document.getElementById("aadharIdError");
   const firstNameError = document.getElementById("firstNameError");
   const lastNameError = document.getElementById("lastNameError");
@@ -26,13 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const passwordError = document.getElementById("passwordError");
   const confirmPasswordError = document.getElementById("confirmPasswordError");
 
-  // Password toggle buttons
   const togglePassword = document.getElementById("togglePassword");
   const toggleConfirmPassword = document.getElementById(
     "toggleConfirmPassword"
   );
 
-  // Validation patterns
   const patterns = {
     aadharId: /^\d{12}$/,
     name: /^[a-zA-Z\s]{1,50}$/,
@@ -40,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     contactNumber: /^\d{10}$/,
   };
 
-  // Error messages
   const errorMessages = {
     aadharId: {
       empty: "Aadhar ID is required",
@@ -76,9 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  /**
-   * Show error message for a field
-   */
   function showError(input, errorElement, message) {
     input.classList.remove("success");
     input.classList.add("error");
@@ -86,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     errorElement.classList.add("visible");
   }
 
-  /**
-   * Show success state for a field
-   */
   function showSuccess(input, errorElement) {
     input.classList.remove("error");
     input.classList.add("success");
@@ -96,9 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     errorElement.classList.remove("visible");
   }
 
-  /**
-   * Validate Aadhar ID
-   */
   function validateAadharId() {
     const value = aadharIdInput.value.trim();
     if (!value) {
@@ -113,9 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate First Name
-   */
   function validateFirstName() {
     const value = firstNameInput.value.trim();
     if (!value) {
@@ -134,9 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate Last Name
-   */
   function validateLastName() {
     const value = lastNameInput.value.trim();
     if (!value) {
@@ -151,9 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate email
-   */
   function validateEmail() {
     const value = emailInput.value.trim();
     if (!value) {
@@ -168,9 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate contact number
-   */
   function validateContactNumber() {
     const value = contactNumberInput.value.trim();
     if (!value) {
@@ -193,9 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate address
-   */
   function validateAddress() {
     const value = addressInput.value.trim();
     if (!value) {
@@ -210,9 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate password
-   */
   function validatePassword() {
     const value = passwordInput.value;
     if (!value) {
@@ -227,9 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate confirm password
-   */
   function validateConfirmPassword() {
     const value = confirmPasswordInput.value;
     const password = passwordInput.value;
@@ -256,9 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Toggle password visibility
-   */
   function togglePasswordVisibility(inputElement, toggleButton) {
     const eyeIcon = toggleButton.querySelector(".eye-icon");
     const eyeOffIcon = toggleButton.querySelector(".eye-off-icon");
@@ -274,9 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /**
-   * Validate entire form
-   */
   function validateForm() {
     const isAadharValid = validateAadharId();
     const isFirstNameValid = validateFirstName();
@@ -299,13 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  /**
-   * Handle form submission
-   */
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Validate form
     if (!validateForm()) {
       const firstError = form.querySelector(".error");
       if (firstError) {
@@ -314,14 +264,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Show loading state
     const btnText = submitBtn.querySelector(".btn-text");
     const btnLoader = submitBtn.querySelector(".btn-loader");
     submitBtn.disabled = true;
     btnText.classList.add("hidden");
     btnLoader.classList.remove("hidden");
 
-    // Collect form data
     const userData = {
       aadharId: aadharIdInput.value.trim(),
       firstName: firstNameInput.value.trim(),
@@ -332,10 +280,8 @@ document.addEventListener("DOMContentLoaded", () => {
       password: passwordInput.value,
     };
 
-    // Create user using db.js
     const result = window.DB.createUser(userData);
 
-    // Hide loading state
     submitBtn.disabled = false;
     btnText.classList.remove("hidden");
     btnLoader.classList.add("hidden");
@@ -346,30 +292,25 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Success - show the success card
     const successCard = document.getElementById("successCard");
     const accountNumberDisplay = document.getElementById("accountNumber");
     const customerNameDisplay = document.getElementById("customerName");
     const goToLoginBtn = document.getElementById("goToLoginBtn");
 
-    // Display customer details
     accountNumberDisplay.textContent = result.user.accountNumber;
     customerNameDisplay.textContent = `${result.user.firstName} ${result.user.lastName}`;
 
-    // Hide form elements and show success card
     form.querySelectorAll(".form-group, .form-row").forEach((group) => {
       group.style.display = "none";
     });
     submitBtn.style.display = "none";
     successCard.classList.remove("hidden");
 
-    // Handle login redirect button
     goToLoginBtn.addEventListener("click", () => {
       window.location.href = "login.html";
     });
   }
 
-  // Event listeners for real-time validation
   aadharIdInput.addEventListener("blur", validateAadharId);
   aadharIdInput.addEventListener("input", () => {
     if (aadharIdInput.classList.contains("error")) {
@@ -432,7 +373,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Password toggle listeners
   togglePassword.addEventListener("click", () => {
     togglePasswordVisibility(passwordInput, togglePassword);
   });
@@ -441,6 +381,5 @@ document.addEventListener("DOMContentLoaded", () => {
     togglePasswordVisibility(confirmPasswordInput, toggleConfirmPassword);
   });
 
-  // Form submit listener
   form.addEventListener("submit", handleSubmit);
 });

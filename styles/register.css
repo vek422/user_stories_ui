@@ -1,6 +1,3 @@
-/* ===== Registration Page Styles ===== */
-
-/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
@@ -17,14 +14,12 @@
   color: var(--primary);
 }
 
-/* Container */
 .register-container {
   max-width: 720px;
   margin: 0 auto;
   padding: 3rem 2rem;
 }
 
-/* Header */
 .register-header {
   text-align: center;
   margin-bottom: 2.5rem;
@@ -41,7 +36,6 @@
   color: var(--muted-foreground);
 }
 
-/* Form */
 .register-form {
   display: flex;
   flex-direction: column;
@@ -96,7 +90,6 @@
   font-family: inherit;
 }
 
-/* Error Message */
 .error-message {
   font-size: 0.8125rem;
   color: var(--destructive);
@@ -109,7 +102,6 @@
   opacity: 1;
 }
 
-/* Password */
 .password-wrapper {
   position: relative;
 }
@@ -138,7 +130,6 @@
   display: none;
 }
 
-/* Password Strength */
 .password-strength {
   height: 4px;
   background-color: var(--secondary);
@@ -187,7 +178,6 @@
   color: hsl(142, 71%, 45%);
 }
 
-/* Checkbox */
 .checkbox-label {
   display: flex;
   align-items: flex-start;
@@ -245,7 +235,6 @@
   text-decoration: underline;
 }
 
-/* Button */
 .btn-register {
   display: flex;
   align-items: center;
@@ -285,7 +274,6 @@
   }
 }
 
-/* Success Message */
 .success-message {
   display: flex;
   align-items: center;
@@ -307,7 +295,6 @@
   display: none !important;
 }
 
-/* Success Card */
 .success-card {
   display: flex;
   flex-direction: column;
@@ -467,7 +454,6 @@
   transform: translateX(4px);
 }
 
-/* Responsive - Mobile */
 @media (max-width: 640px) {
   .register-container {
     padding: 2rem 1rem;

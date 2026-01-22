@@ -1,6 +1,3 @@
-/* ===== Transactions Page Styles (Deposit & Withdrawal) ===== */
-
-/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
@@ -55,14 +52,12 @@
   color: white;
 }
 
-/* Container */
 .transaction-container {
   max-width: 500px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-/* Header */
 .transaction-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -79,7 +74,6 @@
   color: var(--muted-foreground);
 }
 
-/* Balance Card */
 .balance-card {
   display: flex;
   flex-direction: column;
@@ -105,7 +99,6 @@
   font-weight: 700;
 }
 
-/* Info Card */
 .info-card {
   padding: 1rem;
   background-color: hsla(221.2, 83.2%, 53.3%, 0.1);
@@ -124,7 +117,6 @@
   margin-bottom: 0;
 }
 
-/* Form */
 .transaction-form {
   display: flex;
   flex-direction: column;
@@ -175,7 +167,6 @@
   opacity: 1;
 }
 
-/* Buttons */
 .btn-transaction {
   padding: 0.875rem;
   font-size: 1rem;
@@ -199,7 +190,6 @@
   background-color: hsl(0, 84%, 60%);
 }
 
-/* Result Card */
 .result-card {
   padding: 2rem;
   background-color: var(--background);
@@ -276,7 +266,6 @@
   display: none !important;
 }
 
-/* Responsive */
 @media (max-width: 640px) {
   .navbar {
     flex-direction: column;

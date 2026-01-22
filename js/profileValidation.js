@@ -1,10 +1,4 @@
-/**
- * Profile Edit Validation
- * Handles profile update form validation and submission
- */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Check if user is logged in
   const sessionData = localStorage.getItem("session");
   if (!sessionData) {
     window.location.href = "login.html";
@@ -20,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Form elements
   const form = document.getElementById("profileForm");
   const accountNumberInput = document.getElementById("accountNumber");
   const firstNameInput = document.getElementById("firstName");
@@ -31,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactNumberInput = document.getElementById("contactNumber");
   const submitBtn = document.getElementById("submitBtn");
 
-  // Error elements
   const firstNameError = document.getElementById("firstNameError");
   const lastNameError = document.getElementById("lastNameError");
   const aadharIdError = document.getElementById("aadharIdError");
@@ -39,11 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const addressError = document.getElementById("addressError");
   const contactNumberError = document.getElementById("contactNumberError");
 
-  // Popup elements
   const successPopup = document.getElementById("successPopup");
   const closePopup = document.getElementById("closePopup");
 
-  // Populate form with current user data
   accountNumberInput.value = user.accountNumber;
   firstNameInput.value = user.firstName;
   lastNameInput.value = user.lastName;
@@ -52,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   addressInput.value = user.address;
   contactNumberInput.value = user.contactNumber;
 
-  // Validation patterns
   const patterns = {
     name: /^[a-zA-Z\s]{1,50}$/,
     aadharId: /^\d{12}$/,
@@ -60,9 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     contactNumber: /^\d{10}$/,
   };
 
-  /**
-   * Show error message for a field
-   */
   function showError(input, errorElement, message) {
     input.classList.remove("success");
     input.classList.add("error");
@@ -70,9 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     errorElement.classList.add("visible");
   }
 
-  /**
-   * Show success state for a field
-   */
   function showSuccess(input, errorElement) {
     input.classList.remove("error");
     input.classList.add("success");
@@ -80,9 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     errorElement.classList.remove("visible");
   }
 
-  /**
-   * Validate First Name
-   */
   function validateFirstName() {
     const value = firstNameInput.value.trim();
     if (!value) {
@@ -97,9 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate Last Name
-   */
   function validateLastName() {
     const value = lastNameInput.value.trim();
     if (!value) {
@@ -114,9 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate Aadhar ID
-   */
   function validateAadharId() {
     const value = aadharIdInput.value.trim();
     if (!value) {
@@ -131,9 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate Email
-   */
   function validateEmail() {
     const value = emailInput.value.trim();
     if (!value) {
@@ -148,9 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate Address
-   */
   function validateAddress() {
     const value = addressInput.value.trim();
     if (!value) {
@@ -165,9 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate Contact Number
-   */
   function validateContactNumber() {
     const value = contactNumberInput.value.trim();
     if (!value) {
@@ -190,9 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  /**
-   * Validate entire form
-   */
   function validateForm() {
     const isFirstNameValid = validateFirstName();
     const isLastNameValid = validateLastName();
@@ -211,9 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  /**
-   * Handle form submission
-   */
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -225,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Collect updated data
     const updates = {
       firstName: firstNameInput.value.trim(),
       lastName: lastNameInput.value.trim(),
@@ -235,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
       contactNumber: contactNumberInput.value.trim(),
     };
 
-    // Update user in localStorage
     const result = window.DB.updateUser(user.accountNumber, updates);
 
     if (result.success) {
@@ -243,18 +200,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Close popup
   closePopup.addEventListener("click", () => {
     successPopup.classList.add("hidden");
   });
 
-  // Logout
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("session");
     window.location.href = "login.html";
   });
 
-  // Event listeners
   firstNameInput.addEventListener("blur", validateFirstName);
   lastNameInput.addEventListener("blur", validateLastName);
   aadharIdInput.addEventListener("blur", validateAadharId);

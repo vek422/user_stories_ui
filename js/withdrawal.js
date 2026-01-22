@@ -1,13 +1,7 @@
-/**
- * Withdrawal Script
- * Handles withdrawal form with min balance checks
- */
-
 document.addEventListener("DOMContentLoaded", () => {
   const MIN_WITHDRAWAL = 1000;
   const MIN_BALANCE = 500;
 
-  // Check if user is logged in
   const sessionData = localStorage.getItem("session");
   if (!sessionData) {
     window.location.href = "login.html";
@@ -23,19 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Elements
   const form = document.getElementById("withdrawalForm");
   const amountInput = document.getElementById("amount");
   const amountError = document.getElementById("amountError");
   const currentBalanceDisplay = document.getElementById("currentBalance");
   const resultCard = document.getElementById("resultCard");
 
-  // Display current balance
   currentBalanceDisplay.textContent = user.balance.toLocaleString("en-IN");
 
-  /**
-   * Validate amount
-   */
   function validateAmount() {
     const value = parseFloat(amountInput.value);
 
@@ -84,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     amountError.classList.remove("visible");
   }
 
-  /**
-   * Handle form submission
-   */
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -97,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const amount = parseFloat(amountInput.value);
     const newBalance = user.balance - amount;
 
-    // Update user balance
     const result = window.DB.updateUser(user.accountNumber, {
       balance: newBalance,
     });
@@ -105,10 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (result.success) {
       user = result.user;
 
-      // Update display
       currentBalanceDisplay.textContent = user.balance.toLocaleString("en-IN");
 
-      // Show result card
       document.getElementById("resultAccountNumber").textContent =
         user.accountNumber;
       document.getElementById(
@@ -126,20 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Another withdrawal button
   document.getElementById("anotherBtn").addEventListener("click", () => {
     amountInput.value = "";
     form.classList.remove("hidden");
     resultCard.classList.add("hidden");
   });
 
-  // Logout
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("session");
     window.location.href = "login.html";
   });
 
-  // Event listeners
   amountInput.addEventListener("input", () => {
     if (amountInput.classList.contains("error")) {
       validateAmount();

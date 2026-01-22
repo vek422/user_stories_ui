@@ -1,10 +1,4 @@
-/**
- * Home Page Script
- * Displays logged-in user information and handles logout
- */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Check if user is logged in
   const sessionData = localStorage.getItem("session");
   if (!sessionData) {
     window.location.href = "login.html";
@@ -20,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Display user information
   document.getElementById(
     "customerName"
   ).textContent = `${user.firstName} ${user.lastName}`;
@@ -28,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("balance").textContent =
     user.balance.toLocaleString("en-IN");
 
-  // Logout functionality
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("session");
     window.location.href = "login.html";
