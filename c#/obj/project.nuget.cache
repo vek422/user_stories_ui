@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "2RBnf/lPqsY=",
+  "dgSpecHash": "NTRArE4pnG+kkC36qUbd0lrwwFJaC/dH+r8eKZRFotZjzQkBLPxH8BnErCuwbdKu45zeMRFeg8jga37gAHwEKg==",
   "success": true,
   "projectFilePath": "/home/rose/code/bank_user_stories_ui/c#/c#.csproj",
   "expectedPackageFiles": [
-    "/home/rose/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.0/microsoft.aspnetcore.app.ref.10.0.0.nupkg.sha512"
+    "/home/rose/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
   ],
   "logs": []
 }
